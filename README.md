@@ -7,7 +7,11 @@ Official implementation of the paper [Roman Numeral Analysis with Graph Neural N
 This work was conducted at the [Institute of Computation Peception at JKU](https://www.jku.at/en/institute-of-computational-perception/) by [Emmanouil Karystinaios](https://emmanouil-karystinaios.github.io/).
 
 ## Abstract
-
+Roman Numeral analysis is the important task of identifying chords and their functional context in pieces of tonal music. 
+This paper presents a new approach to automatic Roman Numeral analysis in symbolic music. While existing techniques rely on an intermediate lossy representation of the score, we propose a new method based on Graph Neural Networks (GNNs) that enable the direct description and processing of each individual note in the score. 
+The proposed architecture can leverage notewise features and interdependencies between notes but yield onset-wise representation by virtue of our novel edge contraction algorithm. 
+Our results demonstrate that _ChordGNN_ outperforms existing state-of-the-art models, achieving higher accuracy in Roman Numeral analysis on the reference datasets. 
+In addition, we investigate variants of our model using proposed techniques such as NADE, and post-processing of the chord predictions. The full source code for this work is available at [https://github.com/manoskary/chordgnn](https://github.com/manoskary/chordgnn)
 
 ## Installation
 
