@@ -30,10 +30,10 @@ conda activate chordgnn
 ```
 
 
-If you have a GPU available you might want to install the GPU dependencies
-
+If you have a GPU available you might want to install the GPU dependencies follow [this link](https://pytorch.org/) to install the appropriate version of Pytorch:
+In general for CPU version:
 ```shell
-conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+conda install pytorch==1.12.0 cpuonly -c pytorch
 ```
 
 And configure the system paths with the two following commands (only for Linux, skip on Windows):

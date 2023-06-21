@@ -1,5 +1,4 @@
 import numpy as np
-
 from chordgnn.utils import load_score_hgraph, hetero_graph_from_note_array, select_features, HeteroScoreGraph
 from chordgnn.utils import time_divided_tsv_to_part
 from chordgnn.models.core import positional_encoding

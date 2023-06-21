@@ -1,9 +1,7 @@
 import os
 import random, string
 import pickle
-
 import numpy as np
-
 from chordgnn.utils.general import exit_after
 # from chordgnn.utils.graph import ScoreGraph
 from chordgnn.descriptors.general import *

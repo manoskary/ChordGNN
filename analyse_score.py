@@ -13,7 +13,7 @@ import argparse
 parser = argparse.ArgumentParser("Chord Prediction")
 parser.add_argument("--use_ckpt", type=str, default="melkisedeath/chord_rec/model-kvd0jic5:v0",
                     help="Wandb artifact to use for prediction")
-parser.add_argument("--input_score", type=str, default="./artifacts/op20n3-04.musicxml", help="Path to musicxml input score")
+parser.add_argument("--score_path", type=str, default="./artifacts/op20n3-04.musicxml", help="Path to musicxml input score")
 
 args = parser.parse_args()
 
@@ -35,7 +35,7 @@ model = PostChordPrediction(83, 256, tasks, 1, device="cpu", frozen_model=encode
 model = model.load_from_checkpoint(os.path.join(artifact_dir, "model.ckpt"))
 encoder = model.frozen_model
 model = model.module
-score = pt.load_score(args.input_score)
+score = pt.load_score(args.score_path)
 dfdict = {}
 with torch.no_grad():
     model.eval()
@@ -51,7 +51,7 @@ dfdict["s_measure"] = prediction["s_measure"]
 df = pd.DataFrame(dfdict)
 
 
-inputPath = args.input_score
+inputPath = args.score_path
 dfout = copy.deepcopy(df)
 score = pt.load_score(inputPath)
 note_array = score.note_array(include_pitch_spelling=True)
@@ -139,4 +139,4 @@ pt.score.tie_notes(rn_part)
 #         rna_annotations[idx].text = rna_annotations[idx].text[rna_annotations[idx].text.index(":")+1:] # + "/ degree difference between previous key and current key"
 
 score.parts.append(rn_part)
-pt.save_musicxml(score, f"./artifacts/{os.path.splitext(os.path.basename(args.input_score))[0]}_rna.musicxml")
+pt.save_musicxml(score, f"./artifacts/{os.path.splitext(os.path.basename(args.score_path))[0]}_analysis.musicxml")
