@@ -2,7 +2,7 @@
 
 # ChordGNN
 
-Official implementation of the paper [Roman Numeral Analysis with Graph Neural Networks: Onset-Wise Predictions from Note-Wise Features](), accepted at ISMIR 2023.
+Official implementation of the paper [Roman Numeral Analysis with Graph Neural Networks: Onset-Wise Predictions from Note-Wise Features](https://arxiv.org/), accepted at ISMIR 2023.
 
 This work was conducted at the [Institute of Computation Peception at JKU](https://www.jku.at/en/institute-of-computational-perception/) by [Emmanouil Karystinaios](https://emmanouil-karystinaios.github.io/).
 

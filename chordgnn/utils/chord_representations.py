@@ -1,3 +1,7 @@
+"""
+Adapted from https://github.com/napulen/AugmentedNet
+"""
+
 from itertools import combinations
 import re
 import partitura

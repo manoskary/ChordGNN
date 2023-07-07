@@ -1,4 +1,7 @@
-"""Classes and data structures related to tonal features."""
+"""Classes and data structures related to tonal features.
+
+Adapted from https://github.com/napulen/AugmentedNet
+"""
 import numpy as np
 from music21.key import Key
 from music21.pitch import Pitch
