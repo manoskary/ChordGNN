@@ -21,16 +21,16 @@ args = parser.parse_args()
 artifact_dir = os.path.normpath(f"./artifacts/{os.path.basename(args.use_ckpt)}")
 if not os.path.exists(artifact_dir):
     import wandb
-    run = wandb.init()
-    artifact = run.use_artifact(args.use_ckpt, type='model')
+    api = wandb.Api()
+    artifact = api.artifact(args.use_ckpt, type="model")
     artifact_dir = artifact.download()
 
 tasks = {
     "localkey": 38, "tonkey": 38, "degree1": 22, "degree2": 22, "quality": 11, "inversion": 4,
     "root": 35, "romanNumeral": 31, "hrhythm": 7, "pcset": 121, "bass": 35, "tenor": 35,
     "alto": 35, "soprano": 35}
-encoder = ChordPrediction(83, 256, tasks, 1, lr=0.0015, dropout=0.44,
-                        weight_decay=0.0035, use_nade=False, use_jk=False, use_rotograd=False, device="cpu").module
+encoder = ChordPrediction(in_feats=83, n_hidden=256, tasks=tasks, n_layers=1, lr=0.0, dropout=0.0,
+                        weight_decay=0.0, use_nade=False, use_jk=False, use_rotograd=False, device="cpu").module
 model = PostChordPrediction(83, 256, tasks, 1, device="cpu", frozen_model=encoder)
 model = model.load_from_checkpoint(os.path.join(artifact_dir, "model.ckpt"))
 encoder = model.frozen_model
@@ -112,7 +112,7 @@ annotations = annotations[bmask]
 durations = np.r_[np.diff(annotations["onset_div"]), end_duration]
 for i, (rn, onset) in enumerate(annotations):
     note = pt.score.UnpitchedNote(step="F", octave=5, staff=1)
-    word = pt.score.Harmony(rn)
+    word = pt.score.RomanNumeral(rn)
     rn_part.add(note, onset, onset+durations[i].item())
     rn_part.add(word, onset)
 
@@ -139,4 +139,4 @@ pt.score.tie_notes(rn_part)
 #         rna_annotations[idx].text = rna_annotations[idx].text[rna_annotations[idx].text.index(":")+1:] # + "/ degree difference between previous key and current key"
 
 score.parts.append(rn_part)
-pt.save_musicxml(score, f"./artifacts/{os.path.splitext(os.path.basename(args.score_path))[0]}_analysis.musicxml")
+pt.save_musicxml(score, f"{os.path.splitext(args.score_path)[0]}-analysis.musicxml")

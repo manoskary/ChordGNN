@@ -36,16 +36,6 @@ In general for CPU version:
 conda install pytorch==1.12.0 cpuonly -c pytorch
 ```
 
-And configure the system paths with the two following commands (only for Linux, skip on Windows):
-
-```shell
-mkdir -p $CONDA_PREFIX/etc/conda/activate.d
-
-echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/' > $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
-```
-
-
-
 Finally, clone this repository, move to its directory and install the requirements:
 
 ```shell

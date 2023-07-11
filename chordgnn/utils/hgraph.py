@@ -1,14 +1,12 @@
 import os
 import random, string
 import pickle
-import numpy as np
 from chordgnn.utils.general import exit_after
-# from chordgnn.utils.graph import ScoreGraph
 from chordgnn.descriptors.general import *
 import torch
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import connected_components
-import torch_geometric as pyg
+from numpy.lib import recfunctions as rfn
 
 
 class HeteroScoreGraph(object):
@@ -212,8 +210,6 @@ def hetero_graph_from_note_array(note_array, rest_array=None, norm2bar=False, po
         The partitura note_array object. Every entry has 5 attributes, i.e. onset_time, note duration, note velocity, voice, id.
     rest_array : structured array
         A structured rest array similar to the note array but for rests.
-    t_sig : list
-        A list of time signature in the piece.
     '''
 
     edg_src = list()
@@ -373,7 +369,7 @@ def add_reverse_edges(graph, mode):
                 "note", "rest", "note"
             ].edge_index[[1, 0]]
         elif mode == "undirected":
-            graph = pyg.transforms.ToUndirected()(graph)
+            raise NotImplementedError("To undirected is not Implemented for ScoreGraph.")
         else:
             raise ValueError("mode must be either 'new_type' or 'undirected'")
     return graph
