@@ -2,7 +2,7 @@
 
 # ChordGNN
 
-Official implementation of the paper [Roman Numeral Analysis with Graph Neural Networks: Onset-Wise Predictions from Note-Wise Features](https://arxiv.org/), accepted at ISMIR 2023.
+Official implementation of the paper [Roman Numeral Analysis with Graph Neural Networks: Onset-Wise Predictions from Note-Wise Features](https://arxiv.org/abs/2307.03544), accepted at ISMIR 2023.
 
 This work was conducted at the [Institute of Computation Peception at JKU](https://www.jku.at/en/institute-of-computational-perception/) by [Emmanouil Karystinaios](https://emmanouil-karystinaios.github.io/).
 
@@ -62,5 +62,37 @@ Training a model from scratch generally requires downloading the training data. 
 To train ChordGNN from scratch use:
 
 ```shell
-python train.py --dataset 
+python ./train/chord_prediction.py  
 ```
+
+Note use -h to see all the available options.
+
+
+## Pretrained Models
+
+Pretrained models and logged runs are saved on [wandb](https://wandb.ai/melkisedeath/chord_rec) and can be downloaded from there.
+
+## Citation
+
+If you use this code, please cite the following paper:
+
+```bibtex
+@inproceedings{karystinaios2023roman,
+  title={Roman Numeral Analysis with Graph Neural Networks: Onset-Wise Predictions from Note-Wise Features},
+  author={Karystinaios, Emmanouil and Widmer, Gerhard},
+  booktitle={Proceedings of the International Society for Music Information Retrieval Conference (ISMIR)},
+  year={2023}
+}
+```
+
+### Some of the code is based on the following repositories:
+
+- [AugmentedNet](https://github.com/napulen/AugmentedNet)
+- [Voice Separation as Link Prediction](https://github.com/manoskary/vocsep_ijcai2023)
+
+
+## Aknowledgements
+
+This work is supported by the European Research Council (ERC) under the EU’s Horizon 2020 research & innovation programme, grant agreement
+No. 101019375 (“Whither Music?”), and the Federal State of Upper Austria (LIT AI Lab).
+
