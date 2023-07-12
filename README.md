@@ -62,7 +62,7 @@ Training a model from scratch generally requires downloading the training data. 
 To train ChordGNN from scratch use:
 
 ```shell
-python ./train/chord_prediction.py  
+python ./chordgnn/train/chord_prediction.py  
 ```
 
 Note use -h to see all the available options.
